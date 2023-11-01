@@ -11,7 +11,7 @@ fn my_rot13() -> Result<(),io::Error> {
             code = i as u8 + 13;
         } else if (i >= 'n' && i <= 'z') || (i >= 'N' && i <= 'Z') {
             code = i as u8 - 13;
-        } else if i >= '!' && i <= '~' {
+        } else if i >= ' ' && i <= '~' {
             continue;
         }
         else {
