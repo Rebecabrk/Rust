@@ -4,9 +4,9 @@ use std::{fs, collections::HashMap};
 fn format_print(sorted : Vec<(String, i32)>) -> (){
     let mut v = sorted.clone();
     v.sort_unstable_by_key(|x| x.0.len());
-    let max_number = v.iter().next_back().unwrap();
+    let max_number = v.iter().next_back().map(|x| x.0.len()).unwrap_or(0);
     for i in sorted.iter(){
-        println!("{:<number$} => {}",i.0, i.1, number = max_number.0.len() as usize);
+        println!("{:<number$} => {}",i.0, i.1, number = max_number as usize);
     }
 }
 
