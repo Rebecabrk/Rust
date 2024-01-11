@@ -14,7 +14,7 @@ impl<W : Write> MyWriter<W>{
 
 impl<W : Write> Write for MyWriter<W>{
     fn write(self : &mut Self,content : &[u8]) -> Result<usize, std::io::Error>{
-        let mut duplicated_content = Vec::with_capacity(content.len()*2);
+        let mut duplicated_content = Vec::new();
 
         for &byte in content {
             duplicated_content.push(byte);
@@ -23,7 +23,7 @@ impl<W : Write> Write for MyWriter<W>{
 
         self.file.write_all(&duplicated_content)?;
 
-        Ok(duplicated_content.len())
+        Ok(content.len())
     }
     fn flush(self : &mut Self)->Result<(), std::io::Error>{
         self.file.flush()
